@@ -5,5 +5,5 @@
 
     <entry-point class="br.dmppka.usermanager.client.Application"/>
 
-    <servlet path="/userservice" class="br.dmppka.usermanager.server.UserServiceImpl"/>
+    <servlet path="/actionexecuter" class="br.dmppka.usermanager.server.ActionExecuterImpl"/>
 </module>
