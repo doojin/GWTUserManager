@@ -28,13 +28,14 @@ public abstract class View {
         execute(getLoadActionName());
     }
 
-    void bind(Widget widget, String name) {
+    <T extends Widget> T bind(T widget, String name) {
         Binding binding = getBinding(name);
         if (binding != null) {
             binding.setWidget(widget);
-            return;
+            return widget;
         }
         bindings.add(new Binding(widget, name));
+        return widget;
     }
 
     Map<String, String> getModel() {

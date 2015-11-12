@@ -14,8 +14,7 @@ public class HomeView extends View {
     public static final String MODEL_NAME = "name";
 
     public HomeView() {
-        Label name = new Label();
-        bind(name, MODEL_NAME);
+        Label name = bind(new Label(), MODEL_NAME);
 
         Button button = new Button("Get my random name");
         button.addClickHandler(new ClickHandler() {
