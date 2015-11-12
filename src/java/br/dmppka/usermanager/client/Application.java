@@ -2,7 +2,6 @@ package br.dmppka.usermanager.client;
 
 import br.dmppka.usermanager.server.action.RandomNameAction;
 import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -14,14 +13,14 @@ import java.util.Map;
 
 public class Application implements EntryPoint {
 
-    private ActionExecuterAsync executer = GWT.create(ActionExecuter.class);
+    private ActionExecutorAsync executor = GWTGinjector.INSTANCE.getActionExecutor();
 
     public void onModuleLoad() {
         Button button = new Button("Get my random name");
         final Label label = new Label();
         button.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent clickEvent) {
-                executer.execute(RandomNameAction.NAME, null, new AsyncCallback<Map<String, String>>() {
+                executor.execute(RandomNameAction.NAME, null, new AsyncCallback<Map<String, String>>() {
                     public void onFailure(Throwable throwable) {
 
                     }

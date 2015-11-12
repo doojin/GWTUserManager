@@ -1,7 +1,7 @@
 package br.dmppka.usermanager.server;
 
 import br.dmppka.usermanager.AppConfig;
-import br.dmppka.usermanager.client.ActionExecuter;
+import br.dmppka.usermanager.client.ActionExecutor;
 import br.dmppka.usermanager.server.action.Action;
 import br.dmppka.usermanager.server.action.RandomNameAction;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
@@ -15,7 +15,7 @@ import java.util.Map;
 import static com.google.common.collect.Maps.newHashMap;
 
 @Component
-public class ActionExecuterImpl extends RemoteServiceServlet implements ActionExecuter {
+public class ActionExecutorImpl extends RemoteServiceServlet implements ActionExecutor {
 
     private Map<String, Action> actions = newHashMap();
 
