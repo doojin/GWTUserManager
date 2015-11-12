@@ -22,4 +22,8 @@ public class RandomNameAction implements Action {
         result.put(HomeView.MODEL_NAME, nameService.getRandomName());
         return result;
     }
+
+    public String getName() {
+        return NAME;
+    }
 }

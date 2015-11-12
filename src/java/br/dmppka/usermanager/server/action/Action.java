@@ -4,4 +4,5 @@ import java.util.Map;
 
 public interface Action {
     Map<String, String> execute(Map<String, String> model);
+    String getName();
 }
