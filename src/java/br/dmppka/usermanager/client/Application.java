@@ -1,38 +1,27 @@
 package br.dmppka.usermanager.client;
 
-import br.dmppka.usermanager.server.action.RandomNameAction;
+import br.dmppka.usermanager.client.service.NavigationService;
 import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.RootPanel;
-
-import java.util.Map;
+import com.google.gwt.event.logical.shared.ValueChangeEvent;
+import com.google.gwt.event.logical.shared.ValueChangeHandler;
+import com.google.gwt.user.client.History;
 
 public class Application implements EntryPoint {
 
-    private ActionExecutorAsync executor = GWTGinjector.INSTANCE.getActionExecutor();
+    private NavigationService navigationService =
+            GWTGinjector.INSTANCE.getNavigationService();
 
     public void onModuleLoad() {
-        Button button = new Button("Get my random name");
-        final Label label = new Label();
-        button.addClickHandler(new ClickHandler() {
-            public void onClick(ClickEvent clickEvent) {
-                executor.execute(RandomNameAction.NAME, null, new AsyncCallback<Map<String, String>>() {
-                    public void onFailure(Throwable throwable) {
+        navigationService.loadURI(NavigationService.URI_HOME);
+        addURIChangeHandler();
+    }
 
-                    }
-
-                    public void onSuccess(Map<String, String> result) {
-                        String name = result.get("randomName");
-                        label.setText(name);
-                    }
-                });
+    private void addURIChangeHandler() {
+        History.addValueChangeHandler(new ValueChangeHandler<String>() {
+            public void onValueChange(ValueChangeEvent<String> event) {
+                String uri = event.getValue();
+                navigationService.loadURI(uri);
             }
         });
-        RootPanel.get().add(button);
-        RootPanel.get().add(label);
     }
 }

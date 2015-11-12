@@ -3,6 +3,7 @@ package br.dmppka.usermanager.server;
 import br.dmppka.usermanager.AppConfig;
 import br.dmppka.usermanager.client.ActionExecutor;
 import br.dmppka.usermanager.server.action.Action;
+import br.dmppka.usermanager.server.action.LoadViewAction;
 import br.dmppka.usermanager.server.action.RandomNameAction;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -24,6 +25,7 @@ public class ActionExecutorImpl extends RemoteServiceServlet implements ActionEx
         super.init();
         AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
         actions.put(RandomNameAction.NAME, ctx.getBean(RandomNameAction.class));
+        actions.put(LoadViewAction.NAME, ctx.getBean(LoadViewAction.class));
     }
 
     public Map<String, String> execute(String actionName, Map<String, String> model) {

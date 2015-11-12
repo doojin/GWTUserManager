@@ -1,5 +1,6 @@
 package br.dmppka.usermanager.server.action;
 
+import br.dmppka.usermanager.client.view.HomeView;
 import br.dmppka.usermanager.server.service.NameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -18,7 +19,7 @@ public class RandomNameAction implements Action {
 
     public Map<String, String> execute(Map<String, String> model) {
         Map<String, String> result = newHashMap();
-        result.put("randomName", nameService.getRandomName());
+        result.put(HomeView.MODEL_NAME, nameService.getRandomName());
         return result;
     }
 }
