@@ -7,8 +7,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
-import static com.google.common.collect.Maps.newHashMap;
-
 @Component
 public class RandomNameAction implements Action {
 
@@ -17,10 +15,9 @@ public class RandomNameAction implements Action {
     @Autowired
     private NameService nameService;
 
-    public Map<String, String> execute(Map<String, String> model) {
-        Map<String, String> result = newHashMap();
-        result.put(HomeView.MODEL_NAME, nameService.getRandomName());
-        return result;
+    public Map<String, Object> execute(Map<String, Object> model) {
+        model.put(HomeView.MODEL_NAME, nameService.getRandomName());
+        return model;
     }
 
     public String getName() {

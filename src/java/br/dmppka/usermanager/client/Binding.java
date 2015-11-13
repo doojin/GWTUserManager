@@ -1,37 +1,34 @@
 package br.dmppka.usermanager.client;
 
-import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.Widget;
+import br.dmppka.usermanager.client.widget.Component;
 
 public class Binding {
 
-    private Widget widget;
+    private Component widget;
     private String name;
 
-    public Binding(Widget widget, String name) {
+    public Binding(Component widget, String name) {
         this.widget = widget;
         this.name = name;
     }
 
-    public String getValue() {
-        String value = "";
-        if (widget instanceof Label) value = ((Label) widget).getText();
-        return value;
+    public Object getValue() {
+        return widget.getValue();
     }
 
-    public void setValue(String value) {
-        if (widget instanceof Label) ((Label) widget).setText(value);
+    public void setValue(Object value) {
+        widget.setValue(value);
     }
 
     public String getName() {
         return name;
     }
 
-    public Widget getWidget() {
+    public Component getWidget() {
         return widget;
     }
 
-    public void setWidget(Widget widget) {
+    public void setWidget(Component widget) {
         this.widget = widget;
     }
 }

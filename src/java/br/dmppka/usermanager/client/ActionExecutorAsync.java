@@ -5,5 +5,5 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import java.util.Map;
 
 public interface ActionExecutorAsync {
-    void execute(String actionName, Map<String, String> model, AsyncCallback<Map<String, String>> async);
+    void execute(String actionName, Map<String, Object> model, AsyncCallback<Map<String, Object>> async);
 }

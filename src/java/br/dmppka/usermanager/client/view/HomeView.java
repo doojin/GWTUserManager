@@ -1,11 +1,11 @@
 package br.dmppka.usermanager.client.view;
 
+import br.dmppka.usermanager.client.widget.simple.Text;
 import br.dmppka.usermanager.server.action.LoadViewAction;
 import br.dmppka.usermanager.server.action.RandomNameAction;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.Label;
 
 public class HomeView extends View {
 
@@ -14,7 +14,7 @@ public class HomeView extends View {
     public static final String MODEL_NAME = "name";
 
     public HomeView() {
-        Label name = bind(new Label(), MODEL_NAME);
+        Text name = bind(new Text(), MODEL_NAME);
 
         Button button = new Button("Get my random name");
         button.addClickHandler(new ClickHandler() {

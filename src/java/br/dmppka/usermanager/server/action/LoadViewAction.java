@@ -9,7 +9,7 @@ public class LoadViewAction implements Action {
 
     public static final String NAME = "LoadViewAction";
 
-    public Map<String, String> execute(Map<String, String> model) {
+    public Map<String, Object> execute(Map<String, Object> model) {
         return model;
     }
 

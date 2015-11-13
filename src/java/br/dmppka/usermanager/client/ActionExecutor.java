@@ -6,6 +6,7 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 import java.util.Map;
 
 @RemoteServiceRelativePath("actionexecuter")
+@SuppressWarnings("NonSerializableServiceParameters")
 public interface ActionExecutor extends RemoteService {
-    public Map<String, String> execute(String actionName, Map<String, String> model);
+    Map<String, Object> execute(String actionName, Map<String, Object> model);
 }

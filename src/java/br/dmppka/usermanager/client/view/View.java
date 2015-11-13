@@ -3,11 +3,11 @@ package br.dmppka.usermanager.client.view;
 import br.dmppka.usermanager.client.ActionExecutorAsync;
 import br.dmppka.usermanager.client.Binding;
 import br.dmppka.usermanager.client.GWTGinjector;
+import br.dmppka.usermanager.client.widget.Component;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.Panel;
 import com.google.gwt.user.client.ui.RootPanel;
-import com.google.gwt.user.client.ui.Widget;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -28,7 +28,7 @@ public abstract class View {
         execute(getLoadActionName());
     }
 
-    <T extends Widget> T bind(T widget, String name) {
+    <T extends Component> T bind(T widget, String name) {
         Binding binding = getBinding(name);
         if (binding != null) {
             binding.setWidget(widget);
@@ -38,21 +38,20 @@ public abstract class View {
         return widget;
     }
 
-    Map<String, String> getModel() {
-        Map<String, String> model = newHashMap();
+    Map<String, Object> getModel() {
+        Map<String, Object> model = newHashMap();
         for (Binding binding : bindings) {
             model.put(binding.getName(), binding.getValue());
         }
         return model;
     }
 
-    void applyModel(Map<String, String> model) {
+    void applyModel(Map<String, Object> model) {
         for (Map.Entry entry : model.entrySet()) {
             String name = (String) entry.getKey();
             Binding binding = getBinding(name);
             if (binding != null) {
-                String value = (String) entry.getValue();
-                binding.setValue(value);
+                binding.setValue(entry.getValue());
             }
         }
     }
@@ -71,7 +70,7 @@ public abstract class View {
         executor.execute(actionName, getModel(), new RedrawCallback());
     }
 
-    private void redraw(Map<String, String> model) {
+    private void redraw(Map<String, Object> model) {
         RootPanel.get().clear(true);
         applyModel(model);
         RootPanel.get().add(root);
@@ -81,13 +80,13 @@ public abstract class View {
         return bindings;
     }
 
-    protected class RedrawCallback implements AsyncCallback<Map<String, String>> {
+    protected class RedrawCallback implements AsyncCallback<Map<String, Object>> {
 
         public void onFailure(Throwable throwable) {
             throwable.printStackTrace();
         }
 
-        public void onSuccess(Map<String, String> model) {
+        public void onSuccess(Map<String, Object> model) {
             redraw(model);
         }
     }

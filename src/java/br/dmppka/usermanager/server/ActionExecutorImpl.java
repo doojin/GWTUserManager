@@ -32,8 +32,8 @@ public class ActionExecutorImpl extends RemoteServiceServlet implements ActionEx
         }
     }
 
-    public Map<String, String> execute(String actionName, Map<String, String> model) {
+    public Map<String, Object> execute(String actionName, Map<String, Object> model) {
         Action action = actions.get(actionName);
-        return action == null ? new HashMap<String, String>() : action.execute(model);
+        return action == null ? new HashMap<String, Object>() : action.execute(model);
     }
 }

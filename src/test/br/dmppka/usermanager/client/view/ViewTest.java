@@ -1,7 +1,8 @@
 package br.dmppka.usermanager.client.view;
 
 import br.dmppka.usermanager.client.Binding;
-import com.google.gwt.user.client.ui.Widget;
+import br.dmppka.usermanager.client.widget.Component;
+import br.dmppka.usermanager.client.widget.simple.Text;
 import com.google.gwtmockito.GwtMockitoTestRunner;
 import org.junit.Before;
 import org.junit.Test;
@@ -31,13 +32,13 @@ public class ViewTest {
         List<Binding> bindings = view.getBindings();
         assertThat(bindings.size(), equalTo(0));
 
-        Widget widget1 = new Widget();
+        Component widget1 = new Text();
         view.bind(widget1, "dummy name");
         assertThat(bindings.size(), equalTo(1));
         assertThat(bindings.get(0).getWidget(), equalTo(widget1));
         assertThat(bindings.get(0).getName(), equalTo("dummy name"));
 
-        Widget widget2 = new Widget();
+        Component widget2 = new Text();
         view.bind(widget2, "dummy name");
         assertThat(bindings.size(), equalTo(1));
         assertThat(bindings.get(0).getWidget(), equalTo(widget2));
@@ -60,25 +61,25 @@ public class ViewTest {
 
         view.getBindings().addAll(newArrayList(binding1, binding2, binding3));
 
-        Map<String, String> expectedModel = newHashMap();
+        Map<String, Object> expectedModel = newHashMap();
         expectedModel.put("field1", "binding 1 value");
         expectedModel.put("field2", "binding 2 value");
         expectedModel.put("field3", "binding 3 value");
-        Map<String, String> actualModel = view.getModel();
+        Map<String, Object> actualModel = view.getModel();
 
         assertThat(actualModel, equalTo(expectedModel));
     }
 
     @Test
     public void applyModel_shouldUpdateBindings() {
-        Map<String, String> model = newHashMap();
+        Map<String, Object> model = newHashMap();
         model.put("field1", "value1");
         model.put("field2", "value2");
         model.put("field3", "value3");
 
-        Binding binding1 = spy(new Binding(null, "field1"));
-        Binding binding2 = spy(new Binding(null, "field2"));
-        Binding binding3 = spy(new Binding(null, "field3"));
+        Binding binding1 = spy(new Binding(mock(Component.class), "field1"));
+        Binding binding2 = spy(new Binding(mock(Component.class), "field2"));
+        Binding binding3 = spy(new Binding(mock(Component.class), "field3"));
         view.getBindings().addAll(newArrayList(binding1, binding2, binding3));
 
         view.applyModel(model);
