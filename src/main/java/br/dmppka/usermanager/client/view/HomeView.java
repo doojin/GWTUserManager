@@ -1,8 +1,8 @@
 package br.dmppka.usermanager.client.view;
 
 import br.dmppka.usermanager.client.widget.simple.Text;
-import br.dmppka.usermanager.server.action.LoadViewAction;
-import br.dmppka.usermanager.server.action.RandomNameAction;
+import br.dmppka.usermanager.server.action.home.LoadHomeAction;
+import br.dmppka.usermanager.server.action.home.RandomNameAction;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
@@ -28,6 +28,6 @@ public class HomeView extends View {
 
     @Override
     protected String getLoadActionName() {
-        return LoadViewAction.NAME;
+        return LoadHomeAction.NAME;
     }
 }

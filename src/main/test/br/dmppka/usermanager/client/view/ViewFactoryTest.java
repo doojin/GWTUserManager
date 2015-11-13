@@ -5,7 +5,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static junit.framework.Assert.assertTrue;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
 
 @RunWith(GwtMockitoTestRunner.class)
 public class ViewFactoryTest {
@@ -19,7 +20,7 @@ public class ViewFactoryTest {
 
     @Test
     public void getView_shouldReturnCorrectViewByName() {
-        assertTrue(viewFactory.getView(HomeView.NAME) instanceof HomeView);
-        assertTrue(viewFactory.getView("unknown name") instanceof HomeView);
+        assertThat(viewFactory.getView(HomeView.NAME) instanceof HomeView, is(true));
+        assertThat(viewFactory.getView("unknown name") instanceof HomeView, is(true));
     }
 }
