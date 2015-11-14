@@ -1,5 +1,6 @@
 package br.dmppka.usermanager.client.view;
 
+import br.dmppka.usermanager.client.service.NavigationService;
 import com.google.gwtmockito.GwtMockitoTestRunner;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,7 +21,8 @@ public class ViewFactoryTest {
 
     @Test
     public void getView_shouldReturnCorrectViewByName() {
-        assertThat(viewFactory.getView(HomeView.NAME) instanceof HomeView, is(true));
+        assertThat(viewFactory.getView(NavigationService.URI_HOME) instanceof HomeView, is(true));
+        assertThat(viewFactory.getView(NavigationService.URI_MANAGER) instanceof ManagerView, is(true));
         assertThat(viewFactory.getView("unknown name") instanceof HomeView, is(true));
     }
 }

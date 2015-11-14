@@ -6,7 +6,11 @@
 
     <mapping>
         <class-a>java.util.Map</class-a>
-        <class-b>br.dmppka.usermanager.server.model.HomeModel</class-b>
+        <class-b>br.dmppka.usermanager.server.model.Model</class-b>
+        <field>
+            <a key="redirectURI">this</a>
+            <b>redirectURI</b>
+        </field>
     </mapping>
 
 </mappings>

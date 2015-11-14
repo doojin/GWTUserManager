@@ -4,6 +4,7 @@ import br.dmppka.usermanager.client.ActionExecutorAsync;
 import br.dmppka.usermanager.client.Binding;
 import br.dmppka.usermanager.client.GWTGinjector;
 import br.dmppka.usermanager.client.widget.Component;
+import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.Panel;
@@ -17,6 +18,8 @@ import static com.google.common.collect.Lists.newArrayList;
 import static com.google.common.collect.Maps.newHashMap;
 
 public abstract class View {
+
+    public static final String MODEL_REDIRECT_URI = "redirectURI";
 
     protected ActionExecutorAsync executor = GWTGinjector.INSTANCE.getActionExecutor();
     protected Panel root = new FlowPanel();
@@ -87,6 +90,10 @@ public abstract class View {
         }
 
         public void onSuccess(Map<String, Object> model) {
+            String redirectURI = (String) model.get(MODEL_REDIRECT_URI);
+            if (redirectURI != null) {
+                History.newItem(redirectURI);
+            }
             redraw(model);
         }
     }
