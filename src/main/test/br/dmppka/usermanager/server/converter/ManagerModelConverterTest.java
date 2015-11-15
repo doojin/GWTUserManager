@@ -44,7 +44,6 @@ public class ManagerModelConverterTest {
         Map<String, Serializable> result =  converter.convertFrom(model);
 
         assertThat(result.get("users"), CoreMatchers.<Object>equalTo(users));
-        assertThat(result.get("redirectURI"), CoreMatchers.<Object>equalTo("dummy redirect uri"));
     }
 
     @Test
