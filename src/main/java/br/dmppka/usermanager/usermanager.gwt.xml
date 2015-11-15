@@ -10,4 +10,5 @@
     <servlet path="/actionexecuter" class="br.dmppka.usermanager.server.ActionExecutorImpl"/>
 
     <source path="client"/>
+    <source path="shared"/>
 </module>

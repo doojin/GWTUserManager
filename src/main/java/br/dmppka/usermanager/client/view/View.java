@@ -11,6 +11,7 @@ import com.google.gwt.user.client.ui.Panel;
 import com.google.gwt.user.client.ui.RootPanel;
 
 import javax.annotation.Nullable;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
@@ -41,20 +42,21 @@ public abstract class View {
         return widget;
     }
 
-    Map<String, Object> getModel() {
-        Map<String, Object> model = newHashMap();
+    Map<String, Serializable> getModel() {
+        Map<String, Serializable> model = newHashMap();
         for (Binding binding : bindings) {
             model.put(binding.getName(), binding.getValue());
         }
         return model;
     }
 
-    void applyModel(Map<String, Object> model) {
+    void applyModel(Map<String, Serializable> model) {
         for (Map.Entry entry : model.entrySet()) {
             String name = (String) entry.getKey();
             Binding binding = getBinding(name);
             if (binding != null) {
-                binding.setValue(entry.getValue());
+                Serializable value = (Serializable) entry.getValue();
+                binding.setValue(value);
             }
         }
     }
@@ -73,7 +75,7 @@ public abstract class View {
         executor.execute(actionName, getModel(), new RedrawCallback());
     }
 
-    private void redraw(Map<String, Object> model) {
+    private void redraw(Map<String, Serializable> model) {
         RootPanel.get().clear(true);
         applyModel(model);
         RootPanel.get().add(root);
@@ -83,13 +85,13 @@ public abstract class View {
         return bindings;
     }
 
-    protected class RedrawCallback implements AsyncCallback<Map<String, Object>> {
+    protected class RedrawCallback implements AsyncCallback<Map<String, Serializable>> {
 
         public void onFailure(Throwable throwable) {
             throwable.printStackTrace();
         }
 
-        public void onSuccess(Map<String, Object> model) {
+        public void onSuccess(Map<String, Serializable> model) {
             String redirectURI = (String) model.get(MODEL_REDIRECT_URI);
             if (redirectURI != null) {
                 History.newItem(redirectURI);

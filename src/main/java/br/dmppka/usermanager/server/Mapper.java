@@ -14,8 +14,8 @@ public class Mapper extends DozerBeanMapper {
     public void init() {
         this.setMappingFiles(
                 newArrayList(
-                        "mapping/model.xml",
-                        "mapping/homeModel.xml"
+                        "mapping/homeModel.xml",
+                        "mapping/managerModel.xml"
                 )
         );
     }

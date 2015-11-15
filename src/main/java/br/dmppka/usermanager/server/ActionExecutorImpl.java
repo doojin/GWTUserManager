@@ -10,6 +10,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.stereotype.Component;
 
 import javax.servlet.ServletException;
+import java.io.Serializable;
 import java.lang.reflect.Modifier;
 import java.util.HashMap;
 import java.util.Map;
@@ -38,7 +39,7 @@ public class ActionExecutorImpl extends RemoteServiceServlet implements ActionEx
         }
     }
 
-    public Map<String, Object> execute(String actionName, Map<String, Object> presentationModel) {
+    public Map<String, Serializable> execute(String actionName, Map<String, Serializable> presentationModel) {
         Action action = actions.get(actionName);
         Model model = (Model) mapper.map(presentationModel, action.getModelClass());
         action.execute(model);

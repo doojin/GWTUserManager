@@ -2,6 +2,8 @@ package br.dmppka.usermanager.client;
 
 import br.dmppka.usermanager.client.widget.Component;
 
+import java.io.Serializable;
+
 public class Binding {
 
     private Component widget;
@@ -12,11 +14,11 @@ public class Binding {
         this.name = name;
     }
 
-    public Object getValue() {
+    public Serializable getValue() {
         return widget.getValue();
     }
 
-    public void setValue(Object value) {
+    public void setValue(Serializable value) {
         widget.setValue(value);
     }
 

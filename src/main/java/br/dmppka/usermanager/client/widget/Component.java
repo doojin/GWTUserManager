@@ -2,7 +2,9 @@ package br.dmppka.usermanager.client.widget;
 
 import com.google.gwt.user.client.ui.Composite;
 
+import java.io.Serializable;
+
 public abstract class Component extends Composite {
-    public abstract Object getValue();
-    public abstract void setValue(Object value);
+    public abstract Serializable getValue();
+    public abstract void setValue(Serializable value);
 }

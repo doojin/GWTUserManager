@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
@@ -61,18 +62,18 @@ public class ViewTest {
 
         view.getBindings().addAll(newArrayList(binding1, binding2, binding3));
 
-        Map<String, Object> expectedModel = newHashMap();
+        Map<String, Serializable> expectedModel = newHashMap();
         expectedModel.put("field1", "binding 1 value");
         expectedModel.put("field2", "binding 2 value");
         expectedModel.put("field3", "binding 3 value");
-        Map<String, Object> actualModel = view.getModel();
+        Map<String, Serializable> actualModel = view.getModel();
 
         assertThat(actualModel, equalTo(expectedModel));
     }
 
     @Test
     public void applyModel_shouldUpdateBindings() {
-        Map<String, Object> model = newHashMap();
+        Map<String, Serializable> model = newHashMap();
         model.put("field1", "value1");
         model.put("field2", "value2");
         model.put("field3", "value3");
